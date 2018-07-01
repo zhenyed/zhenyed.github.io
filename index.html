@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/01/成神之路1-JVM-JVM内存结构/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/01/JVM内存结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhenyed">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/01/成神之路1-JVM-JVM内存结构/" itemprop="url">成神之路1-JVM-JVM内存结构</a></h1>
+                <a class="post-title-link" href="/2018/07/01/JVM内存结构/" itemprop="url">JVM内存结构</a></h1>
         
 
         <div class="post-meta">
@@ -293,7 +293,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-01T13:29:58+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-01T13:38:43+08:00">
                 2018-07-01
               </time>
             
@@ -372,7 +372,7 @@
 <li>线程私有（图中绿色部分）</li>
 <li>线程共享（图中非绿色部分）</li>
 </ul>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><img src="/2018/07/01/成神之路1-JVM-JVM内存结构/JVM-runtime-data-area.jpg" alt="image"><br>（内存各结构实际大小与此图无关）  </p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><img src="/2018/07/01/JVM内存结构/JVM-runtime-data-area.jpg" alt="image"><br>（内存各结构实际大小与此图无关）  </p>
 <h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>是一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器。字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。   </p>
 <h4 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h4><p>是用来存储局部变量和方法调用。每个线程都有自己的栈，栈内以帧（frame）的形式保持着线程内执行的每个方法。声明周期与线程相同。<br>每次方法调用时，新的帧都会创建并被压入栈顶。当方法正常返回或抛出未捕获异常时，帧会做退栈操作。</p>
 <blockquote>
@@ -394,7 +394,7 @@
 <li><a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.6.3" target="_blank" rel="noopener">动态链接（Reference to Constant Pool）</a></li>
 </ul>
 </blockquote>
-<p><img src="/2018/07/01/成神之路1-JVM-JVM内存结构/JVM-Stack.png" alt="image"></p>
+<p><img src="/2018/07/01/JVM内存结构/JVM-Stack.png" alt="image"></p>
 <h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>与虚拟机栈基本类似，区别在于虚拟机栈为虚拟机执行的<strong>java方法</strong>服务，而本地方法栈则是为<strong>Native方法</strong>服务。</p>
 <h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><blockquote>
 <p>这个“堆”并不是数据结构意义上的堆（Heap (data structure)，一种有序的树），而是动态内存分配意义上的堆——用于管理动态生命周期的内存区域。  </p>
@@ -408,7 +408,7 @@
 </li>
 <li>老年代Old Generation<br>用于存放经过多次新生代GC任然存活的对象，例如缓存对象，新建的对象也有可能直接进入老年代 </li>
 </ul>
-<p>可在图中看出如何使用参数来控制各区域的内存大小<br><img src="/2018/07/01/成神之路1-JVM-JVM内存结构/jvm-memory-structure.png" alt="image">  </p>
+<p>可在图中看出如何使用参数来控制各区域的内存大小<br><img src="/2018/07/01/JVM内存结构/jvm-memory-structure.png" alt="image">  </p>
 <p>具体参数设置可在<a href="http://xxfox.perfma.com/" target="_blank" rel="noopener">一只懂JVM参数的狐狸</a> 或者小程序（JVMPocket）了解</p>
 <h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><blockquote>
 <p>注意：方法区已经在JDK1.8中移除  </p>
