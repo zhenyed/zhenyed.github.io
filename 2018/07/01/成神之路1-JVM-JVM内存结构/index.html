@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="jvm," />
 
 
 
@@ -94,13 +94,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhenyed Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="Java内存区域结构 简单来说，JVM主要管理两种类型的内存：堆和非堆。简单来说堆就是Java代码可及的内存，是留给开发人员使用的；非堆就是JVM留给自己用的。    JVM内存区域中有    程序计数器 Program Counter (PC) Register 虚拟机栈 Java Virtual Machine (JVM) Stacks 本地方法栈 Native Method Stacks 堆">
+<meta name="keywords" content="jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="成神之路1-JVM-JVM内存结构">
+<meta property="og:url" content="http://yoursite.com/2018/07/01/成神之路1-JVM-JVM内存结构/index.html">
 <meta property="og:site_name" content="zhenyed Blog">
+<meta property="og:description" content="Java内存区域结构 简单来说，JVM主要管理两种类型的内存：堆和非堆。简单来说堆就是Java代码可及的内存，是留给开发人员使用的；非堆就是JVM留给自己用的。    JVM内存区域中有    程序计数器 Program Counter (PC) Register 虚拟机栈 Java Virtual Machine (JVM) Stacks 本地方法栈 Native Method Stacks 堆">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/07/01/成神之路1-JVM-JVM内存结构/JVM-runtime-data-area.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/07/01/成神之路1-JVM-JVM内存结构/JVM-Stack.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/01/成神之路1-JVM-JVM内存结构/jvm-memory-structure.png">
+<meta property="og:updated_time" content="2018-07-01T05:34:35.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhenyed Blog">
+<meta name="twitter:title" content="成神之路1-JVM-JVM内存结构">
+<meta name="twitter:description" content="Java内存区域结构 简单来说，JVM主要管理两种类型的内存：堆和非堆。简单来说堆就是Java代码可及的内存，是留给开发人员使用的；非堆就是JVM留给自己用的。    JVM内存区域中有    程序计数器 Program Counter (PC) Register 虚拟机栈 Java Virtual Machine (JVM) Stacks 本地方法栈 Native Method Stacks 堆">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/01/成神之路1-JVM-JVM内存结构/JVM-runtime-data-area.jpg">
 
 
 
@@ -129,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/01/成神之路1-JVM-JVM内存结构/"/>
 
 
 
 
 
-  <title>zhenyed Blog</title>
+  <title>成神之路1-JVM-JVM内存结构 | zhenyed Blog</title>
   
 
 
@@ -160,9 +169,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,9 +254,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -279,9 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/01/成神之路1-JVM-JVM内存结构/" itemprop="url">成神之路1-JVM-JVM内存结构</a></h1>
+          <h1 class="post-title" itemprop="name headline">成神之路1-JVM-JVM内存结构</h1>
         
 
         <div class="post-meta">
@@ -353,9 +358,7 @@
       
 
       
-        
-          
-            <h1 id="Java内存区域结构"><a href="#Java内存区域结构" class="headerlink" title="Java内存区域结构"></a>Java内存区域结构</h1><blockquote>
+        <h1 id="Java内存区域结构"><a href="#Java内存区域结构" class="headerlink" title="Java内存区域结构"></a>Java内存区域结构</h1><blockquote>
 <p>简单来说，JVM主要管理两种类型的内存：<strong>堆</strong>和<strong>非堆</strong>。简单来说堆就是Java代码可及的内存，是留给开发人员使用的；非堆就是JVM留给自己用的。  </p>
 </blockquote>
 <p>JVM内存区域中有  </p>
@@ -419,8 +422,6 @@
 <h2 id="堆外内存（直接内存）"><a href="#堆外内存（直接内存）" class="headerlink" title="堆外内存（直接内存）"></a>堆外内存（直接内存）</h2><p>和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响，但缺点是内存难以控制。  </p>
 <p>jdk1.4中新加入的NIO，它可以调用Native方法直接分配堆外内存。</p>
 
-          
-        
       
     </div>
     
@@ -435,14 +436,20 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -452,10 +459,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -463,6 +471,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -483,8 +495,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -546,6 +567,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java内存区域结构"><span class="nav-number">1.</span> <span class="nav-text">Java内存区域结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法区"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时常量池"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">运行时常量池</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆外内存（直接内存）"><span class="nav-number">1.2.</span> <span class="nav-text">堆外内存（直接内存）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -659,10 +696,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
