@@ -373,8 +373,8 @@
 <li>线程共享（图中非绿色部分）</li>
 </ul>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><img src="/2018/07/01/JVM内存结构/JVM-runtime-data-area.jpg" alt="image"><br>（内存各结构实际大小与此图无关）  </p>
-<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>是一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器。字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。   </p>
-<h4 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h4><p>是用来存储局部变量和方法调用。每个线程都有自己的栈，栈内以帧（frame）的形式保持着线程内执行的每个方法。声明周期与线程相同。<br>每次方法调用时，新的帧都会创建并被压入栈顶。当方法正常返回或抛出未捕获异常时，帧会做退栈操作。</p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>是一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器。字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。   </p>
+<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><p>是用来存储局部变量和方法调用。每个线程都有自己的栈，栈内以帧（frame）的形式保持着线程内执行的每个方法。声明周期与线程相同。<br>每次方法调用时，新的帧都会创建并被压入栈顶。当方法正常返回或抛出未捕获异常时，帧会做退栈操作。</p>
 <blockquote>
 <p>每个帧都包括</p>
 <ul>
@@ -395,8 +395,8 @@
 </ul>
 </blockquote>
 <p><img src="/2018/07/01/JVM内存结构/JVM-Stack.png" alt="image"></p>
-<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>与虚拟机栈基本类似，区别在于虚拟机栈为虚拟机执行的<strong>java方法</strong>服务，而本地方法栈则是为<strong>Native方法</strong>服务。</p>
-<h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><blockquote>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>与虚拟机栈基本类似，区别在于虚拟机栈为虚拟机执行的<strong>java方法</strong>服务，而本地方法栈则是为<strong>Native方法</strong>服务。</p>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><blockquote>
 <p>这个“堆”并不是数据结构意义上的堆（Heap (data structure)，一种有序的树），而是动态内存分配意义上的堆——用于管理动态生命周期的内存区域。  </p>
 </blockquote>
 <p>也叫做java堆、GC堆，是Java虚拟机所管理的内存中最大的一块内存区域，也是被各个线程共享的内存区域，在JVM启动时创建。该内存区域只存放对象本身，几乎所有的<strong>对象实例</strong>和<strong>数组</strong>都在堆中分配。</p>
@@ -410,11 +410,11 @@
 </ul>
 <p>可在图中看出如何使用参数来控制各区域的内存大小<br><img src="/2018/07/01/JVM内存结构/jvm-memory-structure.png" alt="image">  </p>
 <p>具体参数设置可在<a href="http://xxfox.perfma.com/" target="_blank" rel="noopener">一只懂JVM参数的狐狸</a> 或者小程序（JVMPocket）了解</p>
-<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><blockquote>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><blockquote>
 <p>注意：方法区已经在JDK1.8中移除  </p>
 </blockquote>
 <p>方法区的作用是存储虚拟机加载的类信息、常量、静态变量、是各个线程共享的内存区域。</p>
-<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>是方法区的一部分，其中的主要内容来自于JVM对Class的加载。 </p>
+<h3 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h3><p>是方法区的一部分，其中的主要内容来自于JVM对Class的加载。 </p>
 <p>Class文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项信息是常量池，用于存放编译器生成的各种符号引用，这部分内容将在类加载后放到方法区的运行时常量池中。</p>
 <h2 id="堆外内存（直接内存）"><a href="#堆外内存（直接内存）" class="headerlink" title="堆外内存（直接内存）"></a>堆外内存（直接内存）</h2><p>和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响，但缺点是内存难以控制。  </p>
 <p>jdk1.4中新加入的NIO，它可以调用Native方法直接分配堆外内存。</p>
